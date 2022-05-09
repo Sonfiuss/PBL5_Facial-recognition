@@ -62,10 +62,10 @@ ul.list_menu li a {
     width: 20%;
     margin-top: 5px;
     margin-left: 5px;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between;
     align-items: center;
-    float: left;
+    float: left; */
 }
 ul.list_sidebar {
     padding: 0;
@@ -93,6 +93,7 @@ ul.list_sidebar li a {
     width: 79%;
     margin-top: 5px;
     float: right;
+    text-align: center;
 }
 .footer{
     border: 1px solid #ff1a8c;
@@ -100,6 +101,7 @@ ul.list_sidebar li a {
     width: 100%;
     margin-top: 5px;
     background: #00cc99;
+    text-align: center;
 }
 .clear{
     clear: both;
