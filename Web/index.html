@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web quản lý sinh viên</title>
     <link rel="stylesheet"  href="css/style.css">
+    <style>
+       
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1  align="right">Hệ thống điểm danh khuôn mặt   </h1>
+        <h1  >Hệ thống điểm danh khuôn mặt   </h1>
     </div>
     <div class="menu"> 
         <ul class="list_menu">
@@ -21,23 +24,108 @@
     <div class="main">
         <div class="sidebar" >
             <ul class="list_sidebar">
-                <li><a href="index.php?quanly=CNTT&id=1">Khoa Công nghệ thông tin</a></li>
-                <li><a href="index.php?quanly=DTVT&id=2">Khoa Điện tử viễn thông</a></li>
-                <li><a href="index.php?quanly=CK">Khoa Cơ khí</a></li>
-                <li><a href="index.php?quanly=H">Khoa Hóa</a></li>
-                <li><a href="index.php?quanly=QLDA">Khoa Quản lý dự án</a></li>
-                <li><a href="index.php?quanly=D">Khoa Điện</a></li>
+                <li  class="btn-cntt"><a href="#">Khoa Công nghệ thông tin</a></li>
+                <li class="btn-dtvt"><a href="#">Khoa Điện tử viễn thông</a></li>
+                <li class="btn-ck"><a href="#">Khoa Cơ khí</a></li>
+                <li class="btn-h"><a href="#">Khoa Hóa</a></li>
+                <li class="btn-qlda"><a href="#">Khoa Quản lý dự án</a></li>
+                <li class="btn-d"><a href="#">Khoa Điện</a></li>
             </ul>   
         </div>
         <div class="maincontent">
-            <p><h1 >Khoa Công nghệ thông tin</h1></p>   
-            <p ><img src="images/background.jpg" height="300" width="850" > </p>  
-        </div>
+           <div class="sub_main_content cntt">   
+            <h1 class="text_heading_maincontent">Khoa Công nghệ thông tin</h1>
+            <p ><img src="images/background.jpg"  width="900" > </p> 
+         </div>
+           <div class="sub_main_content dtvt">   
+            <h1 class="text_heading_maincontent">Khoa Điện tử viễn thông</h1>
+            <p ><img src="images/DTVT.jpg" height="300" width="900"></p> 
+         </div>
+           <div class="sub_main_content ck">   
+            <h1 class="text_heading_maincontent">Khoa Cơ khí</h1>
+            <p ><img src="images/CK.jpg" height="300" width="900" > </p> 
+         </div>
+           <div class="sub_main_content h">   
+            <h1 class="text_heading_maincontent">Khoa Cơ khí</h1>
+            <p ><img src="images/H.png" height="300" width="900" > </p> 
+         </div>
+           <div class="sub_main_content qlda">   
+            <h1 class="text_heading_maincontent">Khoa Cơ khí</h1>
+            <p ><img src="images/QLDA.jpg"  height="300" width="900" > </p> 
+         </div>
+           <div class="sub_main_content d">   
+            <h1 class="text_heading_maincontent">Khoa Cơ khí</h1>
+            <p ><img src="images/D.jpg" height="300"  width="900" > </p> 
+         </div>
     </div>
     <div class="clear"></div>
     <div class="footer">
         <p ><h4>Email: diemdanhkhuonmat@gmail.com</h4></p>
         <p ><h4>Sđt: 0384444284</h4></p>
     </div>
+    <script type="text/javascript">
+        const btn_cntt = document.querySelector('.btn-cntt');
+        const btn_dtvt = document.querySelector('.btn-dtvt');
+        const btn_ck = document.querySelector('.btn-ck');
+        const btn_h = document.querySelector('.btn-h');
+        const btn_qlda = document.querySelector('.btn-qlda');
+        const btn_d = document.querySelector('.btn-d');
+
+        const cntt = document.querySelector('.cntt');
+        const dtvt = document.querySelector('.dtvt');
+        const ck = document.querySelector('.ck');
+        const h = document.querySelector('.h');
+        const qlda = document.querySelector('.qlda');
+        const d = document.querySelector('.d');
+
+        btn_cntt.addEventListener('click',function(){
+            cntt.style.display = 'block';
+            dtvt.style.display = 'none';
+            ck.style.display = 'none';
+            h.style.display = 'none';
+            qlda.style.display = 'none';
+            d.style.display = 'none';
+        })
+        btn_dtvt.addEventListener('click',function(){
+            cntt.style.display = 'none';
+            dtvt.style.display = 'block';
+            ck.style.display = 'none';
+            h.style.display = 'none';
+            qlda.style.display = 'none';
+            d.style.display = 'none';
+        })
+        btn_ck.addEventListener('click',function(){
+            cntt.style.display = 'none';
+            dtvt.style.display = 'none';
+            ck.style.display = 'block';
+            h.style.display = 'none';
+            qlda.style.display = 'none';
+            d.style.display = 'none';
+        })
+        btn_h.addEventListener('click',function(){
+            cntt.style.display = 'none';
+            dtvt.style.display = 'none';
+            ck.style.display = 'none';
+            h.style.display = 'block';
+            qlda.style.display = 'none';
+            d.style.display = 'none';
+        })
+        btn_qlda.addEventListener('click',function(){
+            cntt.style.display = 'none';
+            dtvt.style.display = 'none';
+            ck.style.display = 'none';
+            h.style.display = 'none';
+            qlda.style.display = 'block';
+            d.style.display = 'none';
+        })
+        btn_d.addEventListener('click',function(){
+            cntt.style.display = 'none';
+            dtvt.style.display = 'none';
+            ck.style.display = 'none';
+            h.style.display = 'none';
+            qlda.style.display = 'none';
+            d.style.display = 'block';
+        })
+    </script>
 </body>
 </html>

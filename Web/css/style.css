@@ -1,6 +1,7 @@
-body{
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 .header{
     background-image: url("../images/logo1.png");
@@ -9,6 +10,7 @@ body{
     border: 1px solid #ff80ff;
     height: 80px;
     width: 100%;
+    text-align:center;
 }
 .header_name{
     text-align: center;
@@ -19,10 +21,8 @@ body{
     float: right;
 }
 .menu{
-    border: 1px solid #1aff8c;
     height: 50px;
-    width: 100%;
-    background: #00e6ac;
+    background: #0d00fc;
 }
 ul.list_menu {
     padding: 0;
@@ -34,8 +34,6 @@ ul.list_menu {
 }
 ul.list_menu li {
     float: left;
-    margin: 7px;
-    padding: 5px;
 }
 ul.list_menu li:hover {
     background: burlywood;
@@ -43,7 +41,10 @@ ul.list_menu li:hover {
 ul.list_menu li a {
     text-decoration: none;
     text-align: center;
-    color: #3333ff;
+    color: #f2ff33;
+    line-height: 51px;
+    padding:0 10px;
+    display:block;
 }
 .main{
     border: 1px solid #00ff80;
@@ -52,10 +53,9 @@ ul.list_menu li a {
 }
 .sidebar{
     border: 1px solid #00ff80;
-    height: 490px;
+    height: 500px;
     width: 20%;
-    margin-top: 5px;
-    margin-left: 5px;
+    background: #0d00fc;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,33 +68,53 @@ ul.list_sidebar {
     width: 100%;
     font-size: 2vw;
 }
-ul.list_sidebar li {
-    margin: 7px;
-    padding: 5px;
-}
 ul.list_sidebar li:hover {
     background: rgb(164, 238, 207);
 }
 ul.list_sidebar li a {
     text-decoration: none;
     text-align: left;
-    color: #3333ff;
+    color: #f2ff33;
     display: block;
+    padding: 10px 27px;
 }
 .maincontent {
     border: 1px solid #00ff80;
     height: 490px;
     width: 79%;
     margin-top: 5px;
+    margin-right: 5px;
     float: right;
     text-align: center;
+}
+
+.maincontent .text_heading_maincontent{
+    padding: 10px 0 25px 0;
+}
+
+.sub_main_content{
+    margin-top: 10px;
+}
+.dtvt{
+    display: none;
+}
+.ck{
+    display: none;
+}
+.h{
+    display: none;
+}
+.qlda{
+    display: none;
+}
+.d{
+    display: none;
 }
 .footer{
     border: 1px solid #ff1a8c;
     height: 100px;
     width: 100%;
-    margin-top: 5px;
-    background: #00cc99;
+    background: #0d00fc;
     text-align: center;
 }
 .clear{
