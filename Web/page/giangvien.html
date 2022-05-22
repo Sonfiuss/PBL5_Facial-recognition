@@ -36,29 +36,29 @@
                 </ul>
             </div>
             <div id="main-contain"> 
-                <h2>DANH SÁCH SINH VIÊN </h2><br>
-            <div id="listSV">
-                <form method= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc MSSV">
-                <input id= "btnSearch" type = "submit" name = "tim" value="" > 
-                </form> 
-                <table width = "70%">
-                    <tr>
-                        <th>STT</th>
-                        <th>MSSV</th>
-                        <th>Họ Tên</th>
-                        <th>Ngày sinh</th>
-                        <th>Mail</th>
-                        <th>SĐT</th>
-                        <th>Địa chỉ</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </table>
-                <br>
+                <div class="mainlogin">
+
+
+                </div>
+                {% comment %} <h2>DANH SÁCH GIẢNG VIÊN </h2><br>
+                <div id="listSV">
+                    <form method= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc id">
+                        <input id= "btnSearch" type = "submit" name = "tim" value="" > 
+                        </form>
+                    <table width = "70%">
+                        <tr>
+                            <th>STT</th>
+                            <th>Lớp </th>
+                            <th>Chủ nhiệm</th>
+                            <!-- <th>Phòng học</th> -->
+                            <th>Chức năng</th>
+                        </tr>
+                    </table>
+                </div>
                 <form id="formChucnang">
-                <a href="chucnang/themSV.php" ><input  id="btnThemSV" type="button" value="THÊM SV"> </a>
-                </form>
-            </div>    
-            </div>
+                    <a href="chucnang/themlop.php" ><input  id="btnThemSV" type="button" value="THÊM LỚP"> </a>
+                </form> {% endcomment %}
+          </div>
         </div>
     </div>
 </body>

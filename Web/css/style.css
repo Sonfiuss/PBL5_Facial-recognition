@@ -7,10 +7,12 @@
     background-image: url("../images/logo1.png");
     background-repeat: no-repeat;
     background-size: auto;
-    border: 1px solid #ff80ff;
+    /* border: 1px solid #ff80ff; */
     height: 80px;
     width: 100%;
     text-align:center;
+    padding: 15px;
+
 }
 .header_name{
     text-align: center;
@@ -19,6 +21,12 @@
     height: 80px;
     width: 50%;
     float: right;
+}
+.mainlogin{
+    height: 550px;
+    background: aqua;
+    text-align: center;
+    vertical-align: bottom;
 }
 .menu{
     height: 50px;
@@ -60,6 +68,7 @@ ul.list_menu li a {
     justify-content: space-between;
     align-items: center;
     float: left;
+    margin-left: 5px;
 }
 ul.list_sidebar {
     padding: 0;
@@ -89,7 +98,7 @@ ul.list_sidebar li a {
 }
 
 .maincontent .text_heading_maincontent{
-    padding: 10px 0 25px 0;
+    padding: 50px 0 25px 0;
 }
 
 .sub_main_content{
