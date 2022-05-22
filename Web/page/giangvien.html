@@ -1,46 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Sinh viên</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web quản lý sinh viên</title>
+    <link rel="stylesheet"  href="../PBL5/loginapp.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/fontawesome/css/all.css">
-    <link rel="shortcut icon" href="image/logokhoa.ico">
+    <style> 
+       
+    </style>
 </head>
 <body>
-    <header> 
-        <div class="container"> 
-             <div id="logo">
-                <div id="logoImg">
-                <img src="../images/logo.png " >
-                </div>
-                <a href="manage.html">Hệ thống điểm danh khuôn mặt</a>
-            </div>
-            <div id="accountName">
-                <p> Xin chào! </p>
-                <a href="login.php" alt="Đăng xuất"> <img src="../images/logout.png" width="25px"> </a>
-            </div>
-        </div>
-    </header>
-    <!--endheader-->
-    <div class="body">
-        <div class="container"> 
-            <div id="menu">
-                <ul>
-                    <li><a  id="current" href="manage.html"><i class="fas fa-home"></i>Trang chủ</a></li>
-                    <li><a href="lop.html" target="_blank"><i class="fas fa-users"></i>LỚP</a></li>
-                    <li><a href="sinhvien.html" target="content"><i class="fas fa-graduation-cap"></i>SINH VIÊN</a></li>
-                    <li><a href="giangvien.html" target="content"><i class="fas fa-chalkboard-teacher"></i>GIẢNG VIÊN</a></li>
-                    <li><a href="#" target="content"><i class="fas fa-check"></i>ĐIỂM DANH</a></li>
-                    <li><a href="#" target="content"><i class="fas fa-address-book"></i>Contact</a></li>
-                </ul>
-            </div>
-            <div id="main-contain"> 
-                <div class="mainlogin">
-
-
-                </div>
-                {% comment %} <h2>DANH SÁCH GIẢNG VIÊN </h2><br>
+    <div class="header">
+        
+    </div>
+    <div class="menu"> 
+        <ul class="list_menu">
+            <li><a href="manage.html">Trang chủ</a></li>
+            <li><a href="lop.html" target="_blank"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
+            <li><a href="sinhvien.html" target="content"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
+            <li><a href="giangvien.html" target="content"><i class="fas fa-chalkboard-teacher"></i>&ensp;GIẢNG VIÊN</a></li>
+            <li><a href="diemdanh.html" target="content"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
+            <li><a href="contact.html" target="content"><i class="fas fa-address-book"></i>&ensp;Contact</a></li>                
+        </ul>
+    </div>
+    <div class="main">
+        <div id="maincontain"> 
+            <h2>DANH SÁCH GIẢNG VIÊN </h2><br>
                 <div id="listSV">
                     <form method= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc id">
                         <input id= "btnSearch" type = "submit" name = "tim" value="" > 
@@ -48,18 +35,21 @@
                     <table width = "70%">
                         <tr>
                             <th>STT</th>
-                            <th>Lớp </th>
-                            <th>Chủ nhiệm</th>
+                            <th>Tên giảng viên </th>
+                            <th>Khoa</th>
                             <!-- <th>Phòng học</th> -->
-                            <th>Chức năng</th>
+                            <th>Chức vị</th>
                         </tr>
                     </table>
                 </div>
                 <form id="formChucnang">
-                    <a href="chucnang/themlop.php" ><input  id="btnThemSV" type="button" value="THÊM LỚP"> </a>
-                </form> {% endcomment %}
-          </div>
-        </div>
+                    <a href="chucnang/themlop.php" ><input  id="btnThemSV" type="button" value="THÊM"> </a>
+                </form>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="footer">
+        <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
     </div>
 </body>
 </html>
