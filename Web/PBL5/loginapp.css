@@ -37,12 +37,15 @@ body {
     width: 50%;
     float: right;
 }
-
+.main{
+  height: 550px;
+  /* background-color: #00ff80; */
+}
 .page {
   background: #e2e2e5;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 40px);
+  height: 340px;
   position: absolute;
   place-content: center;
   width: calc(100% - 40px);
@@ -122,10 +125,10 @@ ul.list_sidebar li a {
 }
 .left {
   background: white;
-  height: calc(100% - 40px);
-  top: 20px;
+  height: 340px;
   position: relative;
   width: 50%;
+  margin-top: 50px;
 }
 @media (max-width: 767px) {
   .left {
@@ -153,6 +156,7 @@ ul.list_sidebar li a {
   color: #F1F1F2;
   position: relative;
   width: 50%;
+  margin-top: 50px;
 }
 @media (max-width: 767px) {
   .right {
