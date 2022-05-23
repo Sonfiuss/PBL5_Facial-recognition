@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web quản lý sinh viên</title>
-    <link rel="stylesheet"  href="../css/style.css">
-    <link rel="stylesheet" href="../css/fontawesome/css/all.css">
-    <style> 
+    <link rel="stylesheet"  href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fontawesome/css/all.css">
+    <style>
        
     </style>
 </head>
@@ -25,26 +25,29 @@
         </ul>
     </div>
     <div class="main">
-        <div id="maincontain"> 
-            <h2>DANH SÁCH GIẢNG VIÊN </h2><br>
-                <div id="listSV">
-                    <form method= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc id">
-                        <input id= "btnSearch" type = "submit" name = "tim" value="" > 
-                        </form>
-                    <table width = "70%">
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên giảng viên </th>
-                            <th>Khoa</th>
-                            <!-- <th>Phòng học</th> -->
-                            <th>Chức vị</th>
-                        </tr>
-                    </table>
+        <div class="main-contain">
+            <h2>GIẢNG VIÊN - Thông tin giảng viên </h2>
+			<div id="thongtin">
+			  	<div id="avtGiangvien">
+			  		<img src= "../../images/test.jpg" width="200px" height="200px">';
+                      <form method="post" name="upload_avt" enctype="multipart/form-data">
+                        <input type="file" name = "avt" id="file" class="input_file"> 
+                        <label for ="file"> Chọn ảnh</label>
+                        <input type="submit" name = "upload" value= "Thay đổi">
+                    </form>	
                 </div>
-                <form id="formChucnang">
-                    <a href="chucnang/themlop.php" ><input  id="btnThemSV" type="button" value="THÊM"> </a>
-                </form>
-      </div>
+                <div id="chi_tiet">
+                    <big>Họ tên giáo viên</big><br><br>
+                    <br>
+                    MSGV: gv01
+                    <br>
+                    Email: giaovien@gmail.com
+                    <br>
+                    Điện thoại: 0384444284
+                </div>		
+			  			
+			</div>
+        </div>        
     </div>
     <div class="clear"></div>
     <div class="footer">

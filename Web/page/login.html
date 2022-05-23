@@ -8,18 +8,51 @@
     <style>
        
     </style>
+    <script>
+      function login(){
+        window.location.href = "../page/manage.html";
+      }
+    </script>
 </head>
 <body>
     <div class="header">
-        <h1 >Hệ thống điểm danh khuôn mặt   </h1>
+        
+    </div>
+    <div class="menu"> 
+        <ul class="list_menu">
+            <li><a href="index.html">Trang chủ</a></li>
+            
+        </ul>
     </div>
     <div class="mainlogin">
-        <h1 vertical="center" >Tân ở đây</h1>
+        <div class="maincontent">
+          <div class="content1">
+            <b><h1>Đăng nhập</h1></b>
+          </div>
+          <div class="content2">
+            <div class="content21">
+              <br><br><br>
+              <input type="text" name="username" id="username"  class="form-control" value="" placeholder="Tên tài khoản" autocomplete="username">
+              <br><br><br><br>  
+              <input type="password" name="password" id="password" class="form-control" value="" placeholder="Mật khẩu" autocomplete="current-password">
+              <br>
+              <input type="checkbox" name="rememberusername" id="rememberusername" value="1">
+              <label for="rememberusername">Nhớ tên tài khoản</label>
+              <br><br>
+              <button type="submit" class="btn btn-primary btn-block mt-3" id="loginbtn" onclick="login()">Đăng nhập</button>
+            </div>
+            <div class="content21">
+              <br><br><br>
+              <div><b><h2>Bạn quên kí danh hoặc mật khẩu?</h2></b></div>
+              <br><br>
+              <div>Trình duyệt của bạn cần phải mở chức năng quản lí cookie</div>
+            </div>
+          </div>
+        </div>
     </div>
     <div class="clear"></div>
     <div class="footer">
-        <p ><h4>Email: diemdanhkhuonmat@gmail.com</h4></p>
-        <p ><h4>Sđt: 0384444284</h4></p>
+        <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
     </div>
 </body>
 </html>
