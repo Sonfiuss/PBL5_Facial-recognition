@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web quản lý sinh viên</title>
-    <link rel="stylesheet"  href="../css/style.css">
-    <link rel="stylesheet" href="../css/fontawesome/css/all.css">
+    <link rel="stylesheet"  href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fontawesome/css/all.css">
     <style>
        
     </style>
@@ -25,7 +25,29 @@
         </ul>
     </div>
     <div class="main">
-        
+        <div class="main-contain">
+            <h2>GIẢNG VIÊN - Thông tin giảng viên </h2>
+			<div id="thongtin">
+			  	<div id="avtGiangvien">
+			  		<img src= "../../images/test.jpg" width="200px" height="200px">';
+                      <form method="post" name="upload_avt" enctype="multipart/form-data">
+                        <input type="file" name = "avt" id="file" class="input_file"> 
+                        <label for ="file"> Chọn ảnh</label>
+                        <input type="submit" name = "upload" value= "Thay đổi">
+                    </form>	
+                </div>
+                <div id="chi_tiet">
+                    <big>Họ tên giáo viên</big><br><br>
+                    <br>
+                    MSGV: gv01
+                    <br>
+                    Email: giaovien@gmail.com
+                    <br>
+                    Điện thoại: 0384444284
+                </div>		
+			  			
+			</div>
+        </div>        
     </div>
     <div class="clear"></div>
     <div class="footer">

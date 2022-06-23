@@ -1,0 +1,70 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web quản lý sinh viên</title>
+        <link rel="stylesheet"  href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/fontawesome/css/all.css">
+        <style>
+        
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            
+        </div>
+        <div class="menu"> 
+            <ul class="list_menu">
+                <li><a href="manage.html">Trang chủ</a></li>
+                <li><a href="lop.html" target="_blank"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
+                <li><a href="sinhvien.html" target="content"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
+                <li><a href="giangvien.html" target="content"><i class="fas fa-chalkboard-teacher"></i>&ensp;GIẢNG VIÊN</a></li>
+                <li><a href="diemdanh.html" target="content"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
+                <li><a href="contact.html" target="content"><i class="fas fa-address-book"></i>&ensp;Contact</a></li>                
+            </ul>
+        </div>
+        <div class="main">
+            <div class="main-contain">
+                <h2>Sửa thông tin Sinh Viên</h2>
+                <div class="form">
+                    <span style="font-size: 20px; color: red; font-style: italic"><b>Mời nhập lại thông tin sinh viên <?php echo $ten ?>: </b> </span> 
+                        <br>
+                        (Chú ý điền đủ thông tin)
+                        <br><br>
+                        <form method="post">
+                            <table>
+                                <tr> 
+                                    <td>Họ tên </td>
+                                    <td> <input type="text" name="ten" value="Họ tên">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh </td>
+                                    <td> <input type="date" name="ngaysinh" value= "Ngày sinh "></td>
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại </td>
+                                    <td> <input type="text" name="sdt" value="Số điện thoại"></td>
+                                </tr>
+                                <tr>
+                                    <td>Quê quán </td>
+                                    <td> <input type="text" name="quequan" value="Quê quán"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=2>
+                                    <input id="btnChapNhan" type="submit" value="Hoàn tất" name="sua"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        <br>Chọn menu bên trên hoặc click <a href="../sinhvien.html" style="color: blue; text-decoration:underline">vào đây</a> để quay lại danh sách sinh viên.
+                </div>        
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="footer">
+            <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
+        </div>
+    </body>
+    </html>
