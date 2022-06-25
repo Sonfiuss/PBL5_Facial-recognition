@@ -27,22 +27,23 @@ button{
 	height: 25px;
 	border: none;
 	border-radius: 5px;
-	background: #3fb13a;
+	background: #3a6072;
 	color: white;
 	cursor: pointer;
 }
 button:hover{
-	background:#17af04;
+	background:#3a6072;
 }
 .container{
 	margin: 0px 100px;
 }
 /*HEADER*/
 .header{
-    background-image: url("../images/logo1.png");
+    background-image: url("../images/logo.png");
     background-repeat: no-repeat;
+	background-color: white;
     background-size: auto;
-    height: 80px;
+    height: 100px;
     width: 100%;
     text-align:center;
     padding: 15px;
@@ -70,7 +71,7 @@ width: 50px;
 
 .menu{
   height: 50px;
-  background: #88b77b;
+  background: #3a6072;
 }
 .menu1	{
 	height: 50px;
@@ -81,8 +82,9 @@ ul.list_menu {
   margin: 0;
   list-style: none;
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
   font-size: 1.5vw;
+  text-align: center;
 }
 ul.list_menu1 {
 	padding: 0;
@@ -115,10 +117,10 @@ ul.list_menu li a {
   display:block;
 }
 .main{
-  border: 1px solid #00ff80;
+  border: 1px solid #3a6072;
   height: 580px;
   width: 100%;
-  background-color: #648c5687;
+  background-color: white;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -130,7 +132,7 @@ ul.list_menu li a {
   vertical-align: bottom;
 }
 .mainindex{
-  border: 1px solid #00ff80;
+  border: 1px solid #3a6072;
   height: 1000px;
   width: 100%;
 }
@@ -143,7 +145,7 @@ ul.list_menu li a {
   margin-left: 150px;
 }
 .maincontentindex {
-  border: 1px solid #00ff80;
+  border: 1px solid #3a6072;
   height: 480px;
   width: 100%;
   float: right;
@@ -157,25 +159,25 @@ p.left {
 	padding: 7px;
  }
 #maincontain h2{
-    background: #2b3580;
+    background: #3a6072;
     color: white;
     padding:5px;
     text-align: center;
 }
 .main-contain{
 
-	background:#88b77b;
+	background:#3a6072;
 	float:left;
 	width: 60%; 
 	min-height: 500px;
 	margin-left: 300px;
-	border: 1px solid #0549e5;
+	border: 1px solid #3a6072;
 	border-radius:5px;
 	box-sizing: border-box;
 	
 }
 .main-contain h2{
-	background: #2b3580;
+	background: #3a6072;
 	color: white;
 	padding:5px;
 	text-align: center;
@@ -218,7 +220,7 @@ p.left {
 
 #listSV th{
 	height: 30px;
-	background: #023005bd;
+	background: #020330bd;
 	color: white;
 }
 #listSV tr{
@@ -228,7 +230,7 @@ p.left {
 }
 #listSV tr:hover,#listSV tr:nth-child(even):hover{
 	transition: 0.1s ease-in;
-	background-color:#03e94f;
+	background-color:#3a6072;
 }
 #listSV td{
 	padding-left: 5px;
@@ -293,11 +295,11 @@ p.left {
 	box-shadow: 0px 0px 4px 1px black;
 }
 #btnThemSV{
-	background:#53b10b;
+	background:#3a6072;
 
 }
 #btnThemSV:hover{
-	background: green;
+	background: #3a6072;
 }
 #btnXoa, #btnSua, #btnChitiet{
 	border:none;
@@ -324,7 +326,7 @@ p.left {
 	border:none;
 	padding: 10px;
 	color: white;
-	background: #3fb13a;
+	background: #3a6072;
 	border-radius: 5px;
 	margin-top: 20px;
 	margin-left: 40%;
@@ -332,7 +334,7 @@ p.left {
 }
 #btnChapNhan:hover{
 	box-shadow: 0px 0px 4px 1px black;
-	background: green;
+	background: #3a6072;
 }
 #contact-contain{
 	padding-top: 30px;
@@ -368,7 +370,7 @@ p.left {
 }
 #avtGiangvien input{
 	border: none;
-	background: #4207aa;
+	background: #3a6072;
 	color: white;
 	padding: 5px;
 	cursor: pointer;
@@ -415,7 +417,7 @@ p.left {
 	margin-bottom: 5px;
 	float: right;
 	margin-right: 10px;
-	box-shadow: 0px 0px 1px #436646 ;
+	box-shadow: 0px 0px 1px #3a6072 ;
 	border-radius: 5px;
 	
 }
@@ -448,7 +450,7 @@ p.left {
     border: 1px none;
     height: 36px;
     width: 100%;
-    background: #88b77b;
+    background: #3a6072;
     text-align: center;
     font-size: 1.5vw;
 	display: block;
