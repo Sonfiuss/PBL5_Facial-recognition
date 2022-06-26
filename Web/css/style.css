@@ -18,9 +18,13 @@ textarea{
 	border-radius: 2px;
 	
 }
-a{
+a {
 	text-decoration: none;
 	color: white;
+}
+h2 {
+	color: red ;
+	font-size: 15px;
 }
 button{
 	width: 70px;
@@ -358,6 +362,19 @@ p.left {
 	padding-top: 50px;
 
 }
+.logo{
+	background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+	/* background-color: white; */
+    background-size: auto;
+    /* height: 100px; */
+    width: 100%;
+    /* text-align:center; */
+    padding: 15px;
+}
+.info{
+	text-align: center;
+}
 #avtGiangvien{
 	float: left;
 	text-align: center;
@@ -365,6 +382,7 @@ p.left {
 	font-size: 16px;
 
 }
+
 #avtGiangvien img{
 	border: 1px solid white;
 }
@@ -448,10 +466,10 @@ p.left {
 }
 .footer{
     border: 1px none;
-    height: 36px;
+    height: 100px;
     width: 100%;
     background: #3a6072;
-    text-align: center;
+    /* text-align: center; */
     font-size: 1.5vw;
 	display: block;
 }
