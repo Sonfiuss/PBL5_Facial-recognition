@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web quản lý sinh viên</title>
+    <link rel="stylesheet"  href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fontawesome/css/all.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        
+    </div>
+    <div class="menu"> 
+        <ul class="list_menu">
+            <li><a href="../manage.html">Trang chủ</a></li>
+            <li><a href="../lop.html"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
+            <li><a href="../sinhvien.html"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
+            <li><a href="../diemdanh.html"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
+            <li><a href="../contact.html"><i class="fas fa-address-book"></i>&ensp;CONTACT</a></li>                 
+        </ul>
+    </div>
+    <div class="main">
+        <div id="maincontain"> 
+            <h2>ĐIỂM DANH SINH VIÊN </h2><br>
+            <div id="listSV">
+                <form metdod= "post" id= "f_search"> 
+                    <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc MSSV">
+                    <input id= "btnSearch" type = "submit" name = "tim" value="" >
+                </form> 
+                <div id="radiobox" >
+                    <input type="radio" id="radio" name="vehicle1" value="TimeIn" checked="true">
+                    <label for="radioti">Time in</label>
+                    <input type="radio" id="radio" name="vehicle1" value="TimeOut">
+                    <label for="radioto">Time out</label>
+                </div>
+                <table id="table1" widtd = "70%">
+                    <tr>
+                        <th widtd = "3%">STT</th>
+                        <th widtd = "8%">MSSV</th>
+                        <th widtd = "15%">Họ Tên</th>
+                        <th widtd = "20%">Mail</th>
+                        <th widtd = "10%">SĐT</th>
+                        <th widtd = "10%">Lớp sinh hoạt</th>
+                        <th widtd = "10%">Time in</th>
+                        <th widtd = "10%">Time out</th>
+                        <th widtd = "10%">Check</th>
+                    </tr>
+                    <tbody id="tbody1">
+                       
+                    </tbody>
+                </table>
+                <br>
+            </div>  
+            <form id="formChucnang">
+                <a href="#" ><input  id="btnThemSV" type="button" value="Lưu dữ liệu"> </a>
+            </form>  
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="footer">
+        <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
+    </div>
+    <script type="module">
+        // Import tde functions you need from tde SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products tdat you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5JNwgNouvihlohxiGa8Bpg67pkmvkFK8",
+            autdDomain: "mydbpbl5.firebaseapp.com",
+            databaseURL: "https://mydbpbl5-default-rtdb.firebaseio.com",
+            projectId: "mydbpbl5",
+            storageBucket: "mydbpbl5.appspot.com",
+            messagingSenderId: "779874823764",
+            appId: "1:779874823764:web:73a3033d24ed17902ac7c1",
+            measurementId: "G-E7XC29K07T"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, ref, get, set, child, update, remove, onValue} 
+        from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+        const db = getDatabase();
+        
+        //--------references--------
+        var Save = document.getElementById("btnThemSV");
+        //--------function--------
+        function GetAllDataRealtime(){
+            stdNo = 0;
+            var room="";
+            const dbref = ref(db,'ClassSection/'+idsvload+"/ListStudent");
+            onValue(dbref,(snapshot) =>{
+                tbody.innerHTML ="";
+                snapshot.forEach(childSnapshot =>{
+                    var idsv = childSnapshot.val();
+                    const dbref1 = ref(db,'Student');
+                    onValue(dbref1,(snapshot1) =>{
+                        snapshot1.forEach(childSnapshot1 =>{
+                            if(idsv == childSnapshot1.key){
+                                var idclass = childSnapshot1.val().idclass;
+                                var nameclass = "";
+                                const dbref2 = ref(db,'ActivityClass');
+                                onValue(dbref2,(snapshot2) =>{
+                                    snapshot2.forEach(childSnapshot2 =>{    
+                                        if(idclass ==childSnapshot2.key){
+                                            nameclass = childSnapshot2.val().nameclass;
+                                        }
+                                    });
+                                    const dbref3 = ref(db,'ClassSection/'+idsvload+'/room');
+                                    onValue(dbref3,(snapshot3) =>{
+                                        var room = snapshot3.val();
+
+                                        var timein = "";
+                                        var timeout = "";
+                                        const dbref4 = ref(db,'DetailSection/'+room+'/'+idsvload+'/TimeIn/'+idsv);
+                                        //const dbref4 = ref(db,'DetailSection/C205/1/TimeIn/bac');
+                                        onValue(dbref4,(snapshot4) =>{
+                                            if(snapshot4.exists()){
+                                                timein = snapshot4.val().time;
+                                            }
+                                            const dbref5 = ref(db,'DetailSection/'+room+'/'+idsvload+'/TimeOut/'+idsv);
+                                            //const dbref5 = ref(db,'DetailSection/C205/1/TimeOut/bac');
+                                            onValue(dbref5,(snapshot5) =>{
+                                                if(snapshot5.exists()){
+                                                    timeout = snapshot5.val().time;
+                                                }
+                                                AddItemsToTable(childSnapshot1.key, childSnapshot1.val().name,  childSnapshot1.val().mail, childSnapshot1.val().phone, nameclass, timein, timeout);
+                                            })
+                                        })
+                                        
+                                    })
+                                    
+                                })
+                            }
+                        });
+                    }) 
+                })
+            })
+        }
+
+        function GetSearchSV(){
+            const dbref = ref(db,'DetailSection');
+            onValue(dbref,(snapshot) =>{
+                snapshot.forEach(childSnapshot =>{
+                    if(idsvload == childSnapshot.val().id_classsection){
+                        var id = childSnapshot.val().id_student;
+                    const dbref1 = ref(db,'Student');
+                    onValue(dbref1,(snapshot1) =>{
+                        snapshot1.forEach(childSnapshot1 =>{
+                            if(id == childSnapshot1.val().id_student){
+                                var idclass = childSnapshot1.val().idclass;
+                                var nameclass = "";
+                                const dbref2 = ref(db,'ActivityClass');
+                                onValue(dbref2,(snapshot2) =>{
+                                    snapshot2.forEach(childSnapshot2 =>{
+                                        if(idclass == childSnapshot2.key){
+                                            nameclass = childSnapshot2.val().nameclass;
+                                        }
+                                    });
+                                    AddItemsToTable(childSnapshot1.val().id_student, childSnapshot1.val().name,  childSnapshot1.val().mail, childSnapshot1.val().phone, nameclass, timein, timeout);
+                                })
+                            }
+                        });
+                    })
+                    }
+                });
+            })
+        }
+
+        function GetTime(){
+            const dbref = ref(db,'DetailSection/C205/1/TimeIn/bac');
+            onValue(dbref,(snapshot) =>{
+                if(snapshot.exists()){
+                    var time = snapshot.val().time;
+                    return time;
+                }else{
+                    return "";
+                }
+                
+            })
+            
+        }
+        function GetRoom(){
+            const dbref = ref(db,'ClassSection/'+idsvload+'/room');
+            onValue(dbref,(snapshot) =>{
+               return snapshot.val();
+            })
+        }
+        function GetTime1( nametime, room, idclass, idsv){
+            var time = "";
+            const dbref = ref(db);
+            get(child(dbref,'DetailSection/'+room+'/'+idclass+'/'+nametime +'/'+idsv)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    time = snapshot.val().time;
+                }
+                return time;  
+            })
+            .catch((error)=>{
+                alert("Unsuccessful: "+error);
+            });
+        }
+    
+        var stdNo;
+        var tbody = document.getElementById("tbody1");
+        //--------Filing tde table--------
+        function AddAllItemsToTable(student)   {
+            tbody.innerHTML ="";
+            student.forEach(element =>{
+                AddItemsToTable(element.id_student, element.name, element.mail, element.phone, element.nameclass, element.timein, element.timeout);
+            });
+        }
+
+        function AddItemsToTable(idsv, name, mail, phone, nameclass, timein, timeout) {
+            var trow = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            var td4 = document.createElement("td");
+            var td5 = document.createElement("td");
+            var td6 = document.createElement("td");
+            var td7 = document.createElement("td");
+            var td8 = document.createElement("td");
+            var td9 = document.createElement("td");
+            var stt = ++stdNo;
+
+            td1.innerHTML = stt;
+            td2.innerHTML = idsv;
+            td3.innerHTML = name;
+            td4.innerHTML = mail;
+            td5.innerHTML = phone;
+            td6.innerHTML = nameclass;
+            td7.innerHTML = timein;
+            td8.innerHTML = timeout;
+            if(timein !="" && timeout !=""){
+                td9.innerHTML = '<input type="checkbox" name="diemdanh" id="'+idsv+'" value="true" checked="true">';
+            }
+            else{
+                td9.innerHTML = '<input type="checkbox" name="diemdanh" id="'+idsv+'" value="true">';
+            }
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
+            trow.appendChild(td7);
+            trow.appendChild(td8);
+            trow.appendChild(td9);
+            tbody.appendChild(trow);
+        }
+        function UpdateTime() {
+            var today= new Date().toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
+            console.log(today);  //Ouput: 6/23/2022, 6:00:03 AM
+            var room;
+            const dbref = ref(db,'ClassSection/'+idsvload+'/room');
+            onValue(dbref,(snapshot) =>{
+                room = snapshot.val();
+            });
+
+            var nametime = document.querySelector('input[type=radio]:checked');
+            var selects = document.getElementsByName("diemdanh");
+            for(var i = 0; i<selects.length; i++){
+                var check = selects[i].checked;
+                if(check){
+                    var idsv = selects[i].id;
+                    set(ref(db,"DetailSection/"+room+"/"+idsvload+"/"+nametime.value+"/"+idsv),{
+                        time: today
+                    })
+                    .catch((error)=>{
+                        alert("Error: "+error)
+                    });
+                }
+            }
+            alert("Successfully!!!!");
+            GetAllDataRealtime();
+        }
+        Save.addEventListener('click',UpdateTime);
+
+        const queryString = window.location.search;
+        console.log(queryString);
+
+        const urlParams = new URLSearchParams(queryString);
+
+        const idsvload = urlParams.get('idclass');
+
+        console.log(idsvload);
+        window.onload = GetAllDataRealtime;
+
+    </script>   
+</body>
+</html>

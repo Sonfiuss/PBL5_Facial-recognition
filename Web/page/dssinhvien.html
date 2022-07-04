@@ -25,32 +25,33 @@
     </div>
     <div class="main">
         <div id="maincontain"> 
-            <h2>ĐIỂM DANH </h2><br>
+            <h2>DANH SÁCH SINH VIÊN </h2><br>
             <div id="listSV">
-                <form metdod= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc idlop">
-                <input id= "btnSearch" type = "submit" name = "tim" value="" >
-                
-                </form> 
-                <table id="tableclass" widtd = "70%">
+                <div id= "f_search"> 
+                    <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc MSSV">
+                    <input id= "btnSearch" type = "submit" name = "tim" value="" > 
+                </div> 
+                <table id="tablesv" widtd = "70%">
                     <tr>
                         <th>STT</th>
-                        <th width="15%">ID lớp</th> 
-                        <th>ID môn</th>
-                        <th>Thời khóa biểu </th>
-                        <th>Tuần học </th>
-                        <th>Tên lớp</th>
-                        <th>Điểm danh</th>
+                        <th>MSSV</th>
+                        <th>Họ Tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Mail</th>
+                        <th>SĐT</th>
+                        <th>Lớp sinh hoạt</th>
+                        <th>Chức năng</th>
                     </tr>
-                    <tbody id="tbody1">
+                    <tbody id="tbody1" align ="center">
                        
                     </tbody>
                 </table>
                 <br>
-            </div>  
-            <form id="formChucnang">
-                <a href="#" ><input  id="btnThemSV" type="button" value="Lưu dữ liệu"> </a>
-            </form>  
-      </div>
+                <form id="formChucnang">
+                    <a href="chucnang/themsv.html" ><input  id="btnThemSV" type="button" value="THÊM SV"> </a>
+                </form>
+            </div>    
+        </div>
     </div>
     <div class="clear"></div>
     <div class="footer">
@@ -67,7 +68,7 @@
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
             apiKey: "AIzaSyD5JNwgNouvihlohxiGa8Bpg67pkmvkFK8",
-            autdDomain: "mydbpbl5.firebaseapp.com",
+            authDomain: "mydbpbl5.firebaseapp.com",
             databaseURL: "https://mydbpbl5-default-rtdb.firebaseio.com",
             projectId: "mydbpbl5",
             storageBucket: "mydbpbl5.appspot.com",
@@ -87,7 +88,7 @@
         
         //--------references--------
 
-        //--------function--------
+    //--------function--------
         function Insertdata() {
             set(ref(db,"Account/"+name.value),{
                 Descript: descrip.value,
@@ -101,7 +102,7 @@
                 alert("Error: "+error)
             });
         }
-        
+
         function Selectdata() {
             const dbref = ref(db);
             get(child(dbref,"Account/"+name.value)).then((snapshot)=>{
@@ -171,21 +172,42 @@
             });
         }
         function GetAllDataRealtime(){
-            const dbref = ref(db,'ClassSection');
+            const dbref = ref(db,'Student');
             onValue(dbref,(snapshot) =>{
-               var classSection = [];
-               snapshot.forEach(childSnapshot =>{
-                AddItemsToTable(childSnapshot.key, childSnapshot.val().dayofweek, childSnapshot.val().idsubject, childSnapshot.val().lessonstart, childSnapshot.val().lessonend, childSnapshot.val().room,  childSnapshot.val().nameclass, childSnapshot.val().weekstart,  childSnapshot.val().weekend);
-               });
-            })
+                snapshot.forEach(childSnapshot =>{
+                    var id = childSnapshot.val().id_class;
+                    var nameclass = "";
+                    const dbref1 = ref(db,'Activity_class');
+                    onValue(dbref1,(snapshot1) =>{
+                        snapshot1.forEach(childSnapshot1 =>{
+                            if(id == childSnapshot1.val().id_activityclass){
+                                nameclass = childSnapshot1.val().nameclass;
+                            }
+                        });
+                        AddItemsToTable(childSnapshot.val().id_student, childSnapshot.val().name, childSnapshot.val().birthday, childSnapshot.val().mail, childSnapshot.val().phone,nameclass);
+                    })
+                });
+            }) 
         }
-        
         window.onload = GetAllDataRealtime;
-    
+
+        var btnThem = document.getElementById("btnThemSV");
+        btnThem.addEventListener("click",GetAllDataRealtime);
+
+        var table = document.getElementById("tablesv");
+        table.addEventListener("click",GetAllDataRealtime);
+
         //--------Filing tde table--------
+        function AddAllItemsToTable(student){
+            tbody.innerHTML ="";
+            student.forEach(element =>{
+                AddItemsToTable(element.id_student, element.name, element.birthday, element.mail, element.phone, element.nameclass);
+            });
+        }
         var stdNo = 0;
         var tbody = document.getElementById("tbody1");
-        function AddItemsToTable(idclass, day, idsubject, lessonStart, lessonEnd, room, nameclass, weekstart, weekend) {
+
+        function AddItemsToTable(idsv, name, birthday, mail, phone, nameclass) {
             var trow = document.createElement("tr");
             var td1 = document.createElement("td");
             var td2 = document.createElement("td");
@@ -194,15 +216,20 @@
             var td5 = document.createElement("td");
             var td6 = document.createElement("td");
             var td7 = document.createElement("td");
+            var td8 = document.createElement("td");
 
             td1.innerHTML = ++stdNo;
-            td2.innerHTML = idclass;
-            td3.innerHTML = idsubject;
-            td4.innerHTML = day+", "+lessonStart+"-"+lessonEnd+", "+room;
-            td5.innerHTML = weekstart+"-"+weekend;
-            td6.innerHTML = nameclass;
-            td7.innerHTML = '<a href="chucnang/diemdanhlop.html?idclass='+ idclass +'"><input type="button" id="danhsach" value="danh sách"></a>';
-        
+            td2.innerHTML = idsv;
+            td3.innerHTML = name;
+            td4.innerHTML = birthday;
+            td5.innerHTML = mail;
+            td6.innerHTML = phone;
+            td7.innerHTML = nameclass;
+            td8.innerHTML = '<a href="chucnang/suasv.html?idsv='+idsv+'"><input type="button" id="view" value="Xem"></a><input type="button" id="edit" onclick="Viewclick()" value="Sửa"><input type="button" id="del" value="Xóa">';
+            
+            td2.classList += "idsvField";
+            td3.classList += "nameField";
+
             trow.appendChild(td1);
             trow.appendChild(td2);
             trow.appendChild(td3);
@@ -210,9 +237,38 @@
             trow.appendChild(td5);
             trow.appendChild(td6);
             trow.appendChild(td7);
-            tbody.appendChild(trow);
+            trow.appendChild(td8);
+            tbody.appendChild(trow);    
         }
-        //--------events--------
+        var txtSearch = document.getElementById("txtSearch");
+        var btnSearch = document.getElementById("btnSearch");
+        
+        function Searchtdata() {
+            var filter = txtSearch.value.toUpperCase();
+            var tr = tbody.getElementsByTagName("tr");
+            var fd;
+            alert(filter);
+            for(var i = 0; i<tr.lengtd; i++){
+                var td = tr[i].getElementsByClassName("idsvField");
+                alert(td.lengtd);   
+                for( var j = 0; j<td.lengtd; j++){
+                   
+                    if(td[j].innerHTML.toUpperCase().indexOf(filter) > -1){
+                        fd = true;
+                    }
+                }
+                if(fd){
+                    tr[i].style.display="";
+                    fd=false;
+                }
+                else{
+                    tr[i].style.display="none";
+                }
+            }
+        }
+
+        btnSearch.addEventListener("click",Searchtdata);
+   
     </script>   
 </body>
 </html>

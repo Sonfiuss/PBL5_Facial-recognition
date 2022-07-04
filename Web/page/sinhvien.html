@@ -17,21 +17,38 @@
     <div class="menu"> 
         <ul class="list_menu">
             <li><a href="manage.html">Trang chủ</a></li>
-            <li><a href="lop.html" target="_blank"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
-            <li><a href="sinhvien.html" target="content"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
-            <li><a href="giangvien.html" target="content"><i class="fas fa-chalkboard-teacher"></i>&ensp;GIẢNG VIÊN</a></li>
-            <li><a href="diemdanh.html" target="content"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
-            <li><a href="contact.html" target="content"><i class="fas fa-address-book"></i>&ensp;Contact</a></li>                
+            <li><a href="lop.html"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
+            <li><a href="sinhvien.html"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
+            <li><a href="diemdanh.html"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
+            <li><a href="contact.html" ><i class="fas fa-address-book"></i>&ensp;CONTACT</a></li>                
         </ul>
     </div>
     <div class="main">
         <div id="maincontain"> 
             <h2>DANH SÁCH SINH VIÊN </h2><br>
             <div id="listSV">
-                <form method= "post" id= "f_search"> <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc MSSV">
-                <input id= "btnSearch" type = "submit" name = "tim" value="" > 
-                </form> 
-                <table width = "70%">
+                <div>
+                    <td><b><span style="font-size: 17px;">Chọn khoa:  </span><b></td>
+					<td> 
+                        <select id="khoa">
+									 
+                        </select>
+                    </td>	
+                    <td><b><span style="font-size: 17px;">Chọn lớp:  </span></b></td>
+					<td> 
+                        <select id="lop">
+									 
+                        </select>
+                    </td>
+                    <td><input type="button" id="dulieu" value="Dữ liệu"></td>
+                    <div id= "f_search"> 
+                    
+                        <input id = "txtSearch" type="search" name= "search" placeholder = "Nhập tên hoặc MSSV">
+                        <input id= "btnSearch" type = "submit" name = "tim" value="" > 
+                    </div>  				
+                </div>
+                 
+                <table id="tablesv" widtd = "70%">
                     <tr>
                         <th>STT</th>
                         <th>MSSV</th>
@@ -39,13 +56,16 @@
                         <th>Ngày sinh</th>
                         <th>Mail</th>
                         <th>SĐT</th>
-                        <th>Địa chỉ</th>
+                        <th>Lớp sinh hoạt</th>
                         <th>Chức năng</th>
                     </tr>
+                    <tbody id="tbody1" >
+                       
+                    </tbody>
                 </table>
                 <br>
                 <form id="formChucnang">
-                <a href="chucnang/themSV.php" ><input  id="btnThemSV" type="button" value="THÊM SV"> </a>
+                    <a href="chucnang/themsv.html" ><input  id="btnThemSV" type="button" value="THÊM SV"> </a>
                 </form>
             </div>    
         </div>
@@ -54,5 +74,214 @@
     <div class="footer">
         <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
     </div>
+    <script type="module">
+        // Import tde functions you need from tde SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products tdat you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5JNwgNouvihlohxiGa8Bpg67pkmvkFK8",
+            authDomain: "mydbpbl5.firebaseapp.com",
+            databaseURL: "https://mydbpbl5-default-rtdb.firebaseio.com",
+            projectId: "mydbpbl5",
+            storageBucket: "mydbpbl5.appspot.com",
+            messagingSenderId: "779874823764",
+            appId: "1:779874823764:web:73a3033d24ed17902ac7c1",
+            measurementId: "G-E7XC29K07T"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, ref, get, set, child, update, remove, onValue} 
+        from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+        const db = getDatabase();
+        
+        //--------references--------
+        
+        const khoaselect = document.querySelector('#khoa');
+        
+        //--------function--------        
+
+        function removesv(button) {
+            let n = button.id;
+            alert(n);
+               // }
+                /*if(check){
+                    var idsv = selects[i].id;
+                    set(ref(db,"DetailSection/"+room+"/"+idsvload+"/"+nametime.value+"/"+idsv),{
+                        time: today
+                    })
+                    .catch((error)=>{
+                        alert("Error: "+error)
+                    });
+                }*/
+            //alert("Successfully!!!!");
+            /*remove(ref(db,"Account/"+name.value))
+            .then(()=>{
+                alert("data removed Successfully!!!!")
+            })
+            .catch((error)=>{
+                alert("Error: "+error)
+            });*/
+        }
+        function GetAllDataRealtime(){
+            stdNo = 0;
+            tbody.innerHTML ="";
+            const idclass = selectlop.value;
+            const dbref = ref(db,'Student');
+            onValue(dbref,(snapshot) =>{
+                snapshot.forEach(childSnapshot =>{
+                    var nameclass = "";
+                    var idsv = childSnapshot.key;
+                    if(idclass == childSnapshot.val().idclass){
+                        const dbref1 = ref(db,'ActivityClass');
+                        onValue(dbref1,(snapshot1) =>{
+                            snapshot1.forEach(childSnapshot1 =>{
+                                if(idclass == childSnapshot1.key){
+                                    nameclass = childSnapshot1.val().nameclass;
+                                }
+                            });
+                            AddItemsToTable(idsv, childSnapshot.val().name, childSnapshot.val().birthday, childSnapshot.val().mail, childSnapshot.val().phone,nameclass);
+                        })
+                    }
+                });
+            }) ;
+            var btndels = document.getElementsByName("btndel");
+            for(var i = 0; i<btndels.length; i++){
+                var idbtn = btndels[i].id;
+                var b;
+                btndels[i].addEventListener("click",function(){
+                    alert(idbtn);
+                })
+            }
+        }
+
+        var btndulieu = document.getElementById("dulieu");
+        btndulieu.addEventListener("click",GetAllDataRealtime); 
+
+        var tbody = document.getElementById("tbody1");
+        var stdNo;
+
+        //--------Filing tde table--------
+        function AddAllItemsToTable(student){
+            tbody.innerHTML ="";
+            tbody.clear();
+            student.forEach(element =>{
+                AddItemsToTable(element.id_student, element.name, element.birthday, element.mail, element.phone, element.nameclass);
+            });
+        }
+
+        function AddItemsToTable(idsv, name, birthday, mail, phone, nameclass) {
+            var trow = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            var td4 = document.createElement("td");
+            var td5 = document.createElement("td");
+            var td6 = document.createElement("td");
+            var td7 = document.createElement("td");
+            var td8 = document.createElement("td");
+            
+            td1.innerHTML = ++stdNo;
+            td2.innerHTML = idsv;
+            td3.innerHTML = name;
+            td4.innerHTML = birthday;
+            td5.innerHTML = mail;
+            td6.innerHTML = phone;
+            td7.innerHTML = nameclass;
+            td8.innerHTML = '<a href="thongtinsv.html?idsv='+idsv+'"><input type="button" id="view" value="Xem"></a><a href="chucnang/suasv.html?idsv='+idsv+'"><input type="button" id="edit" value="Sửa"></a>';
+            
+            td2.classList += "idsvField";
+            td3.classList += "nameField";
+
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
+            trow.appendChild(td7);
+            trow.appendChild(td8);
+            tbody.appendChild(trow);    
+        }
+        var txtSearch = document.getElementById("txtSearch");
+        var btnSearch = document.getElementById("btnSearch");
+        
+        function Searchtdata() {
+            var filter = txtSearch.value.toUpperCase();
+            var tr = tbody.getElementsByTagName("tr");
+            var fd;
+            alert(filter);
+            for(var i = 0; i<tr.lengtd; i++){
+                var td = tr[i].getElementsByClassName("idsvField");
+                alert(td.lengtd);   
+                for( var j = 0; j<td.lengtd; j++){
+                   
+                    if(td[j].innerHTML.toUpperCase().indexOf(filter) > -1){
+                        fd = true;
+                    }
+                }
+                if(fd){
+                    tr[i].style.display="";
+                    fd=false;
+                }
+                else{
+                    tr[i].style.display="none";
+                }
+            }
+        }
+
+
+        function GetSelectLop(){
+            const dbref = ref(db,'ActivityClass');
+            const idfaculty = selectkhoa.value;
+            selectlop.options.length=0;
+            onValue(dbref,(snapshot) =>{
+               snapshot.forEach(childSnapshot =>{
+                    const key = childSnapshot.key;
+                    //alert(childSnapshot.size);
+                    //alert(childSnapshot.key+" "+childSnapshot.val().nameclass);
+					if(idfaculty==childSnapshot.val().idfaculty){
+                        AddItemsToSelect("lop", childSnapshot.key,childSnapshot.val().nameclass);
+                    }
+               });
+               
+            });
+        }
+        window.onload =GetSelectKhoa;
+        function GetSelectKhoa(){
+            const dbref = ref(db,'Faculty');
+            onValue(dbref,(snapshot) =>{
+               snapshot.forEach(childSnapshot =>{
+					AddItemsToSelect("khoa", childSnapshot.key,childSnapshot.val().title);
+               });
+               
+            })
+        }
+        var selectkhoa = document.getElementById("khoa");
+		var selectlop = document.getElementById("lop");
+
+        function AddItemsToSelect(element, id, name) {
+            var select = document.getElementById(element);
+            var option = document.createElement("option");
+            option.value = id;
+            option.text = name;
+            select.appendChild(option); 
+        }
+        
+        var table = document.getElementById("tablesv");
+
+        btnSearch.addEventListener("click",Searchtdata);
+
+        khoaselect.addEventListener('click',GetSelectLop);
+   
+    </script>   
 </body>
 </html>

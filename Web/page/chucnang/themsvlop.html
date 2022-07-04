@@ -25,13 +25,12 @@
     </div>
     <div class="main">
         <div class="main-contain">
-            <h2>Thêm thông tin Sinh Viên</h2>
+            <h2>Thêm sinh viên lớp: </h2>
 			<div class="form">
-				<span style="font-size: 20px; color: red; font-style: italic"><b>Mời nhập lại thông tin sinh viên : </b> </span> 
+				<span style="font-size: 20px; color: red; font-style: italic"><b>Mời nhập thông tin sinh viên : </b> </span> 
                     <br>
 					(Chú ý điền đủ thông tin)
 					<br><br>
-					<form metdod="post">
 						<table>
 							<tr> 
 								<td>Mã số sinh viên </td>
@@ -54,20 +53,19 @@
 								<td> <input type="text" id="sdt" value=""></td>
 							</tr>
                             <tr>
-								<td>Chọn Lớp  </td>
-								<td> <select id="lop" widtd="80">
+								<td>Chọn lớp  </td>
+								<td> <select id="lop">
 									 
 									</select>
 								</td>	
 							</tr>
 							<tr>
 								<td colspan=2>
-								<input id="btnChapNhan" type="submit" value="Hoàn tất" name="sua">
+								<input id="btnChapNhan" type="submit" value="Thêm" name="sua">
 								</td>
 							</tr>
                             
 						</table>
-					</form>
 					<br>Chọn menu bên trên hoặc click <a href="../sinhvien.html" style="color: blue; text-decoration:underline">vào đây</a> để quay lại danh sách sinh viên.
             </div>        
         </div>
@@ -78,8 +76,8 @@
     </div>
 	<script type="module">
         // Import tde functions you need from tde SDKs you need
-       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
        // TODO: Add SDKs for Firebase products tdat you want to use
        // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -101,7 +99,7 @@
        const analytics = getAnalytics(app);
 
        import {getDatabase, ref, get, set, child, update, remove, onValue} 
-       from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+       from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 
        const db = getDatabase();
         
@@ -114,37 +112,35 @@
 		var idlop = document.getElementById("lop");
 
         var btnHoantat = document.getElementById("btnChapNhan");
-
+        var idclassload;
     //--------function--------
         function Insertdata() {
-            if(idsv.value !=""){
-                set(ref(db,"Student/"+idsv.value),{
-                    name: ten.value,
-                    birthday: ngaysinh.value,
-                    mail: mail.value,
-                    phone: sdt.value,
-                    image: idsv.value+".jpg",
-                    idclass: idlop.value,
+            const dbref = ref(db,'Activity_class');
+            
+            onValue(dbref,(snapshot) =>{
+                var stt;
+
+                set(ref(db,"ClassSection/"+idclassload.value+"/ListStudent"),{
+                    : idsv.value,
+                    
                 })
-                .then(()=>{
-                    alert("Successfully!!!!")
-                })
-                .catch((error)=>{
-                    alert("Error: "+error)
-                });
-            }
-            else{
-                alert("Bạn chưa nhập mã sinh viên!");
-            }
+                
+             })
+            .then(()=>{
+                alert("Successfully!!!!")
+            })
+            .catch((error)=>{
+                alert("Error: "+error)
+            });
         }
         
 		function GetAllAcclass(){
-            const dbref = ref(db,'ActivityClass');
+            const dbref = ref(db,'Activity_class');
 
             onValue(dbref,(snapshot) =>{
 
                snapshot.forEach(childSnapshot =>{
-					AddItemsToSelect(childSnapshot.key,childSnapshot.val().nameclass);
+					AddItemsToSelect(childSnapshot.val().id_activityclass,childSnapshot.val().nameclass);
                });
                
             })
@@ -153,15 +149,20 @@
 		var select = document.getElementById("lop");
 
         function AddItemsToSelect(id, name) {
-            var option = document.createElement("option");
-            option.value = id;
-            option.text = name;
-            select.appendChild(option); 
-        }
 
-        window.onload = GetAllAcclass;
-        //--------events--------
-        btnHoantat.addEventListener('click',Insertdata);
+        var option = document.createElement("option");
+
+		option.value = id;
+		option.text = name;
+
+        select.appendChild(option);
+        
+    }
+
+	window.onload = GetAllAcclass;
+    //--------events--------
+    btnHoantat.addEventListener('click',Insertdata);
+
     </script>
 </body>
 </html>

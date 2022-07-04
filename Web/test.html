@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <title>Web quản lý sinh viên</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <style>
+       label {display: inline-block; widtd: 120px;}
+       input,select{ widtd: 120px;}
+    </style>
+</head>
+<body>
+    <label>Name</label><input type="text" id="Xname"><br><br>
+    <label>Descrip</label><select id="Xdescrip">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select><br><br>
+    <label>Mail</label><input type="text" id="Xmail"><br><br>
+    <label>PassWord</label><input type="text" id="Xpassword">
+    
+    <hr>
+    <button id="insert">Insert</button>
+    <button id="delete">Delete</button>
+    <button id="update">Update</button>
+    <button id="select">Select</button>
+
+    <ul id='list'>
+
+    </ul>
+
+    <script type="module">
+        /// Import tde functions you need from tde SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products tdat you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBCdagLdtn3cOK08OaMv5pXaogIqTskQhQ",
+            autdDomain: "test-4e529.firebaseapp.com",
+            databaseURL: "https://test-4e529-default-rtdb.firebaseio.com",
+            projectId: "test-4e529",
+            storageBucket: "test-4e529.appspot.com",
+            messagingSenderId: "1028578644738",
+            appId: "1:1028578644738:web:eccc835e8b26a00d01281b",
+            measurementId: "G-HZGR2W3DWR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getdatabase, ref, get, set, child, update, remove} 
+        from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+
+        const db = getdatabase();
+
+        //--------references--------
+        var name = document.getElementById("Xname");
+        var descrip = document.getElementById("Xdescrip");
+        var mail = document.getElementById("Xmail");
+        var password = document.getElementById("Xpassword");
+
+        var insbtn = document.getElementById("insert");
+        var delbtn = document.getElementById("delete");
+        var updnbtn= document.getElementById("update");
+        var selbtn = document.getElementById("select");
+
+    //--------function--------
+        function Insertdata() {
+            set(ref(db,"Account/"+name.value),{
+                Descrip: descrip.value,
+                Mail: mail.value,
+                PassWord: password.value
+            })
+            .tden(()=>{
+                alert("Successfully!!!!")
+            })
+            .catch((error)=>{
+                alert("Error: "+error)
+            });
+        }
+        function Selectdata() {
+            const dbref = ref(db);
+            get(child(dbref,"Account/"+name.value)).tden((snapshot)=>{
+                if(snapshot.exists()){
+                    descrip.value = snapshot.val().Descrip;
+                    mail.value = snapshot.val().Mail;
+                    password.value = snapshot.val().PassWord;
+                    AddItemsToTable(descrip, mail, password);
+                    
+                }
+                else{
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert("Unsuccessful: "+error);
+            });
+        }
+        
+        function Deletedata() {
+            remove(ref(db,"Account/"+name.value))
+            .tden(()=>{
+                name.value = "";
+                descrip.value = 0;
+                mail.value = "";
+                password.value = "";
+                alert("data removed Successfully!!!!")
+            })
+            .catch((error)=>{
+                alert("Error: "+error)
+            });
+        }
+        function listdata() {
+            const dbref = ref(db);
+            get(child(dbref,"Account"+name.value)).tden((snapshot)=>{
+                    descrip.value = snapshot.val().Descrip;
+                    mail.value = snapshot.val().Mail;
+                    password.value = snapshot.val().PassWord;
+                    AddItemsToTable(descrip, mail, password);
+            })
+            .catch((error)=>{
+                alert("Unsuccessful: "+error);
+            });
+        }
+        //--------Filing tde table--------
+        var stdNo = 0;
+        function AddItemsToTable( descrip, mail, password) {
+            var ul = document.getElementById("list");
+            var header = document.createElement("h2");
+
+            var td1 = document.createElement("li");
+            var td3 = document.createElement("li");
+            var td4 = document.createElement("li");
+            var td5 = document.createElement("li");
+            var stt = ++stdNo;
+            td1.innerHTML ='STT : '+ stt;
+            header.innerHTML = 'Student ' + stt;
+            td3.innerHTML = 'Descrip: ' + descrip.value;
+            td4.innerHTML = 'Mail : ' + mail.value;
+            td5.innerHTML = 'PassWord : ' + password.value;
+            
+            ul.appendChild(header);
+            ul.appendChild(td1);
+            ul.appendChild(td3);
+            ul.appendChild(td4);
+            ul.appendChild(td5);
+            
+        }
+        function SelectAllData(){
+          firebase.database().ref('Account').once('value',
+          function(snapshot){
+              snapshot.forEach(
+                  function(ChildSnapshot){
+                      var descrip = ChildSnapshot.val().Descrip;
+                      var mail = ChildSnapshot.val().Mail;
+                      var password = ChildSnapshot.val().PassWord;
+                     
+                      AddItemsToTable(descrip, mail, password);
+                  }
+              );
+          });
+        }
+        window.onload(SelectAllData());
+        
+        //--------events--------
+        insbtn.addEventListener('click',Insertdata);
+        selbtn.addEventListener('click',Selectdata);    
+        delbtn.addEventListener('click',Deletedata);
+    </script>
+</body>
+</html>

@@ -16,12 +16,11 @@
     </div>
     <div class="menu"> 
         <ul class="list_menu">
-            <li><a href="manage.html">Trang chủ</a></li>
-            <li><a href="lop.html" target="_blank"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
-            <li><a href="sinhvien.html" target="content"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
-            <li><a href="giangvien.html" target="content"><i class="fas fa-chalkboard-teacher"></i>&ensp;GIẢNG VIÊN</a></li>
-            <li><a href="diemdanh.html" target="content"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
-            <li><a href="contact.html" target="content"><i class="fas fa-address-book"></i>&ensp;Contact</a></li>                
+            <li><a href="../manage.html">Trang chủ</a></li>
+            <li><a href="../lop.html"><i class="fas fa-users"></i>&ensp;LỚP</a></li>
+            <li><a href="../sinhvien.html"><i class="fas fa-graduation-cap"></i>&ensp;SINH VIÊN</a></li>
+            <li><a href="../diemdanh.html"><i class="fas fa-check"></i>&ensp;ĐIỂM DANH</a></li>
+            <li><a href="../contact.html"><i class="fas fa-address-book"></i>&ensp;CONTACT</a></li>                  
         </ul>
     </div>
     <div class="main">
@@ -32,46 +31,167 @@
                 <br>
                 (Chú ý điền đủ thông tin)
                 <br><br>
-                <form method="post">
-                    <table>
+                <form metdod="post">    
+                    <table class="tableclass">
                         <tr> 
-                            <td>Tên Lớp : </td>
-                            <td> <input type="text" name="ten" autofocus></td>
-                        </tr>
-                        <tr>
-                            <td>GVCN :</td>
-                            <td> <input type="text" name="GVCN"></td>
+                            <td>Ngày : </td>
+                            <td> <select id="ngay">
+                                    <option value="Thứ 2">Thứ 2</option>
+                                    <option value="Thứ 3">Thứ 3</option>
+                                    <option value="Thứ 4">Thứ 4</option>
+                                    <option value="Thứ 5">Thứ 5</option>
+                                    <option value="Thứ 6">Thứ 6</option>
+                                    <option value="Thứ 7">Thứ 7</option>
+                                    <option value="Chủ nhật">Chủ nhật</option>
+                                 </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>Phòng học : </td>
-                            <td> <select name="phonghoc">
-                                    <option>P.101</option>
-                                    <option>P.102</option>
-                                    <option>P.103</option>
-                                    <option>P.201</option>
-                                    <option>P.202</option>
-                                    <option>P.203</option>
-                                    <option>P.301</option>
-                                    <option>P.302</option>
-                                    <option>P.303</option>
+                            <td> <select id="phong">
+                                    <option value="C101">C101</option>
+                                    <option value="C102">C102</option>
+                                    <option value="C103">C103</option>
+                                    <option value="C102">C104</option>
+                                    <option value="C103">C105</option>
+                                    <option value="C201">C201</option>
+                                    <option value="C202">C202</option>
+                                    <option value="C203">C203</option>
+                                    <option value="C204">C204</option>
+                                    <option value="C205">C205</option>
+                                    <option value="C301">C301</option>
+                                    <option value="C302">C302</option>
+                                    <option value="C303">C303</option>
+                                    <option value="C304">C304</option>
+                                    <option value="C305">C305</option>
                                 </select>
+                            </td>
                         </tr>
-                
+                        <tr>
+                            <td>Mã lớp học phần  :</td>
+                            <td> <input type="text" id="malop" placeholder="Mã-môn_năm_kì_khoa_nhóm"></td>
+                        </tr>
+                        <tr> 
+                            <td>Môn học : </td>
+                            <td> <select id="monhoc">
+                                
+                            </select>
+                        <tr> 
+                            <td>Tên lớp: </td>
+                            <td> <input type="text" id="tenlop" ></td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Tiết bắt đầu :  <input type="number" id="tietbd" min="1" max="14"></td>
+                            <td>Tiết kết thúc : <input type="number" id="tietkt" min="1" max="14"></td>
+                        </tr>
+                        <tr>
+                            <td>Tuần bắt đầu :  <input type="number" id="tuanbd" min="1" max="52"></td>
+                            <td>Tuần kết thúc : <input type="number" id="tuankt" min="1" max="52"></td>
+                        </tr>
                         <tr>
                             <td colspan=2>
-                            <input id="btnChapNhan" type="submit" value="Hoàn tất" name="them"/>
+                            <input id="btnChapNhan" type="button" value="Thêm lớp" name="sua">
                             </td>
                         </tr>
                     </table>
                     
                 </form>
-					<br>Chọn menu bên trên hoặc click <a href="../lop.html" style="color: blue; text-decoration:underline">vào đây</a> để quay lại danh sách sinh viên.
+					<br>Chọn menu bên trên hoặc click <a href="../lop.html" style="color: blue; text-decoration:underline">vào đây</a> để quay lại danh sách lớp.
             </div>        
         </div>
     </div>
     <div class="clear"></div>
     <div class="footer">
-        <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Sđt: 0384444284</h4></p>
+        <div class="info" float="right">
+            <p ><h4>Email: diemdanhkhuonmat@gmail.com &emsp; &emsp; &emsp; Call us: 0384444284</h4></p>
+        </div>
     </div>
+    <script type="module">
+       // Import tde functions you need from tde SDKs you need
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+       // TODO: Add SDKs for Firebase products tdat you want to use
+       // https://firebase.google.com/docs/web/setup#available-libraries
+
+       // Your web app's Firebase configuration
+       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+       const firebaseConfig = {
+           apiKey: "AIzaSyD5JNwgNouvihlohxiGa8Bpg67pkmvkFK8",
+           autdDomain: "mydbpbl5.firebaseapp.com",
+           databaseURL: "https://mydbpbl5-default-rtdb.firebaseio.com",
+           projectId: "mydbpbl5",
+           storageBucket: "mydbpbl5.appspot.com",
+           messagingSenderId: "779874823764",
+           appId: "1:779874823764:web:73a3033d24ed17902ac7c1",
+           measurementId: "G-E7XC29K07T"
+       };
+   
+       // Initialize Firebase
+       const app = initializeApp(firebaseConfig);
+       const analytics = getAnalytics(app);
+
+       import {getDatabase, ref, get, set, child, update, remove, onValue} 
+       from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+       const db = getDatabase();
+
+       var ngay = document.getElementById("ngay"); 
+       var malop = document.getElementById("malop");
+       var monhoc = document.getElementById("monhoc");
+       var tietbd = document.getElementById("tietbd");
+       var tietkt = document.getElementById("tietkt"); 
+       var tenlop = document.getElementById("tenlop");
+       var phong = document.getElementById("phong");
+       var tuanbd = document.getElementById("tuanbd");
+       var tuankt = document.getElementById("tuankt");
+
+       var btnHoantat = document.getElementById("btnChapNhan");
+
+       //--------function--------
+       function Insertdata() {
+           if(malop.value !=""){
+            set(ref(db,"ClassSection/"+malop.value),{
+                dayofweek: ngay.value,
+                idsubject: monhoc.value,
+                lessonend: tietkt.value,
+                lessonstart: tietbd.value,
+                nameclass: tenlop.value,
+                room: phong.value,
+                weekstart: tuanbd.value,
+                weekend: tuankt.value,
+            })
+            .then(()=>{
+                alert("Successfully!!!!")
+            })
+            .catch((error)=>{
+                alert("Error: "+error)
+            });
+           }
+           else{
+            alert("Bạn chưa nhập mã lớp!");
+           }
+       }
+
+        function GetSelectMon(){
+            const dbref = ref(db,'subject');
+            onValue(dbref,(snapshot) =>{
+               snapshot.forEach(childSnapshot =>{
+					AddItemsToSelect(childSnapshot.key,childSnapshot.val().title);
+               });
+               
+            })
+        }
+        function AddItemsToSelect(id, name) {
+            var option = document.createElement("option");
+            option.value = id;
+            option.text = name;
+            monhoc.appendChild(option); 
+        }
+
+       window.onload = GetSelectMon;
+       btnHoantat.addEventListener('click',Insertdata);   
+        
+    </script>
 </body>
 </html>
